@@ -16,7 +16,8 @@ IniSection *IniDataHandler::GetSection(const string &section)
         return NULL;
     }
 
-    if(list_sections.size() == 0) {
+    if (list_sections.size() == 0)
+    {
         return NULL;
     }
 
@@ -56,7 +57,8 @@ int IniDataHandler::GetValueFromSections(const string &section, const string &ke
     {
         return -1;
     }
-    if(list_sections.size() == 0){
+    if (list_sections.size() == 0)
+    {
         return -1;
     }
 
@@ -87,13 +89,16 @@ int IniDataHandler::SetValueIntoSections(const string &section, const string &ke
     {
         return -1;
     }
-    if(list_sections.size() == 0) {
+    if (list_sections.size() == 0)
+    {
         return -1;
     }
-    for(auto it = list_sections.begin(); it != list_sections.end(); ++it) {
-        if((*it)->section_name == section) {
+    for (auto it = list_sections.begin(); it != list_sections.end(); ++it)
+    {
+        if ((*it)->section_name == section)
+        {
             //堆上 创建IniItem结构实体,放进key-value
-            IniItem* item_ptr = new IniItem();
+            IniItem *item_ptr = new IniItem();
             item_ptr->key = key;
             item_ptr->value = value;
             //把指针放进it指向的IniSection节点的items链表
@@ -112,12 +117,15 @@ int IniDataHandler::DeleteSectionFromSections(const string &section)
     {
         return -1;
     }
-    if(list_sections.size() == 0) {
+    if (list_sections.size() == 0)
+    {
         return -1;
     }
 
-    for(auto it =  list_sections.begin(); it != list_sections.end(); ++it) {
-        if((*it)->section_name == section) {
+    for (auto it = list_sections.begin(); it != list_sections.end(); ++it)
+    {
+        if ((*it)->section_name == section)
+        {
             //释放(*it)的内存
             delete (*it);
             //删除it指向的链表节点
@@ -137,13 +145,18 @@ int IniDataHandler::DeleteItemFromSections(const string &section, const string &
         return -1;
     }
 
-    if(list_sections.size() == 0) {
+    if (list_sections.size() == 0)
+    {
         return -1;
     }
-    for(auto it = list_sections.begin(); it != list_sections.end(); ++it) {
-        if((*it)->section_name == section) {
-            for(auto it2 = (*it)->items.begin(); it2 != (*it)->items.end(); ++it2) {
-                if((*it2)->key == key) {
+    for (auto it = list_sections.begin(); it != list_sections.end(); ++it)
+    {
+        if ((*it)->section_name == section)
+        {
+            for (auto it2 = (*it)->items.begin(); it2 != (*it)->items.end(); ++it2)
+            {
+                if ((*it2)->key == key)
+                {
                     //删除满足条件的item
                     delete (*it2);
                     //删除items链表的对应节点存放的指针
@@ -161,5 +174,4 @@ int IniDataHandler::DeleteItemFromSections(const string &section, const string &
 int main()
 {
     IniDataHandler *ini_ptr = new IniDataHandler();
-    
 }
